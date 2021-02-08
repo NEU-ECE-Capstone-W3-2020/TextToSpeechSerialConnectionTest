@@ -1,11 +1,10 @@
-import serial
-import time
+from emic2 import Emic2
 
 if __name__ == '__main__':
-    ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
-    ser.flush()
-
+    # first make an emic2 instace
+    emic = Emic2()
+    # begin input loop
     while True:
-        inputToSpeak = input("Enter the text to speak\n")
+        inputToSpeak = str(input("Enter the text to speak\n"))
         print("Sending to Arduino...")
-        ser.write(bytes(inputToSpeak, 'utf-8'))
+        emic.sendText(inputToSpeak)
